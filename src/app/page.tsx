@@ -6,10 +6,12 @@ import MediaStatement from "@/components/MediaStatement";
 import Journal from "@/components/Journal";
 import Footer from "@/components/Footer";
 import InteractiveShell from "@/components/InteractiveShell";
+import AnimationEngine from "@/components/AnimationEngine";
 
 export default function HomePage() {
   return (
     <InteractiveShell>
+      <AnimationEngine />
       <main id="top">
         <Hero />
         <Intro />

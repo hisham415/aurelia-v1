@@ -1,6 +1,19 @@
 export default function Hero() {
   return (
     <section className="hero" aria-label="Aurelia signature residence">
+      {/* Decorative floating orbs */}
+      <div className="hero-orb hero-orb--1" aria-hidden="true" />
+      <div className="hero-orb hero-orb--2" aria-hidden="true" />
+      <div className="hero-orb hero-orb--3" aria-hidden="true" />
+
+      {/* Animated line decorations */}
+      <div className="hero-line hero-line--1" aria-hidden="true" />
+      <div className="hero-line hero-line--2" aria-hidden="true" />
+      <div className="hero-line hero-line--3" aria-hidden="true" />
+
+      {/* Grain texture */}
+      <div className="hero-grain" aria-hidden="true" />
+
       <div className="hero-content">
         <div className="hero-kicker">
           <i></i> New release — Arca Valley

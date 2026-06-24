@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+
 const articles = [
   {
     image:
@@ -26,6 +30,26 @@ const articles = [
 ];
 
 export default function Journal() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    grid.querySelectorAll(".journal-card").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="journal" id="journal">
       <div className="container">
@@ -38,7 +62,7 @@ export default function Journal() {
             View all stories <span>→</span>
           </a>
         </div>
-        <div className="journal-grid">
+        <div className="journal-grid" ref={gridRef}>
           {articles.map((a) => (
             <a href="#contact" className="journal-card" key={a.title}>
               <div
