@@ -39,8 +39,7 @@ body::before { content:""; position:fixed; top:0; left:0; height:2px; width:calc
 .nav-link:hover::after { transform: scaleX(1); }
 .logo { font: 600 26px/1 var(--display); letter-spacing: -.08em; text-align: center; }
 .logo small { display: block; margin-top: 7px; font: 500 8px/1 var(--mono); letter-spacing: .32em; text-indent: .32em; }
-.nav-cta { display: inline-flex; align-items: center; border: 1px solid currentColor; border-radius: 999px; padding: 11px 17px; background: transparent; color: inherit; cursor: pointer; transition: background .3s ease, color .3s ease, transform .4s var(--ease-spring), box-shadow .4s ease, border-color .3s ease; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; position:relative; overflow:hidden; }
-.nav-cta:hover { background: var(--ink); border-color: var(--ink); color: white; }
+.nav-cta { display: inline-flex; align-items: center; border: 1px solid currentColor; border-radius: 999px; padding: 11px 17px; background: transparent; color: inherit; cursor: pointer; transition: color .3s ease, transform .4s var(--ease-spring), box-shadow .4s ease, border-color .3s ease; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; position:relative; overflow:hidden; z-index:0; }
 .menu-button { display:none; width:40px; height:40px; border:0; background:transparent; color:inherit; padding:0; position:relative; cursor:pointer; }
 .menu-button span { position:absolute; width:22px; height:1px; background: currentColor; left:9px; transition: transform .25s ease; }
 .menu-button span:first-child { transform: translateY(-4px); }
@@ -356,11 +355,9 @@ a:not(.nav-link):not(.logo):not(.nav-cta):not(.circle-button):not(.inline-link):
 }
 
 /* Nav CTA enhanced */
-.nav-cta { display: inline-flex; align-items: center; border: 1px solid currentColor; border-radius: 999px; padding: 11px 17px; background: transparent; color: inherit; cursor: pointer; transition: background .3s ease, color .3s ease, transform .4s var(--ease-spring), box-shadow .4s ease, border-color .3s ease; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; position:relative; overflow:hidden; }
-.nav-cta::before { content:""; position:absolute; inset:0; background:var(--gold); transform:translateY(101%); transition:transform .4s var(--ease-out-expo); border-radius:999px; }
+.nav-cta::before { content:""; position:absolute; inset:0; background:var(--gold); transform:translateY(101%); transition:transform .4s var(--ease-out-expo); border-radius:999px; z-index:-1; }
 .nav-cta:hover::before { transform:translateY(0); }
 .nav-cta:hover { color:var(--ink); border-color:var(--gold); transform:translateY(-3px); box-shadow:0 10px 30px rgba(189,155,102,.25); }
-.nav-cta span { position:relative; z-index:1; }
 
 @media (max-width: 860px) {
   .container, .hero-content { width:min(100% - 42px, 700px); }
