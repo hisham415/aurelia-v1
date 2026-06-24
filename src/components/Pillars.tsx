@@ -57,14 +57,20 @@ export default function Pillars() {
             observer.unobserve(e.target);
           }
         }),
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
-    section.querySelectorAll(".pillars-reveal").forEach((el) => observer.observe(el));
+    section
+      .querySelectorAll(".pillars-reveal")
+      .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="pillars" aria-labelledby="pillars-title" ref={sectionRef}>
+    <section
+      className="pillars"
+      aria-labelledby="pillars-title"
+      ref={sectionRef}
+    >
       {/* Ambient decorations */}
       <div className="pillars-glow" aria-hidden="true" />
       <div className="pillars-float pillars-float--1" aria-hidden="true" />
