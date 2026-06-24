@@ -2,7 +2,13 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 
-function CountUp({ target, duration = 2000 }: { target: number; duration?: number }) {
+function CountUp({
+  target,
+  duration = 2000,
+}: {
+  target: number;
+  duration?: number;
+}) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
@@ -30,14 +36,18 @@ function CountUp({ target, duration = 2000 }: { target: number; duration?: numbe
           observer.unobserve(el);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     observer.observe(el);
     return () => observer.disconnect();
   }, [target, duration]);
 
-  return <span className="intro-stat-number" ref={ref}>{count}</span>;
+  return (
+    <span className="intro-stat-number" ref={ref}>
+      {count}
+    </span>
+  );
 }
 
 export default function Intro() {
@@ -55,7 +65,7 @@ export default function Intro() {
             observer.unobserve(e.target);
           }
         }),
-      { threshold: 0.12 }
+      { threshold: 0.12 },
     );
 
     section.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
@@ -89,9 +99,23 @@ export default function Intro() {
               aria-label="Minimalist living room with natural light"
             />
             <div className="intro-image-badge" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M3 9.5L12 4l9 5.5v9L12 24l-9-5.5v-9Z" stroke="currentColor" strokeWidth="1.2" />
-                <path d="M12 4v20M3 9.5l9 5.5 9-5.5" stroke="currentColor" strokeWidth="1.2" />
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 9.5L12 4l9 5.5v9L12 24l-9-5.5v-9Z"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                />
+                <path
+                  d="M12 4v20M3 9.5l9 5.5 9-5.5"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                />
               </svg>
               <strong>48</strong>
               <span>Homes built</span>

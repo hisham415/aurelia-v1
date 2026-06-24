@@ -48,7 +48,10 @@ export default function AnimationEngine() {
 
     // Progress bar on scroll
     const progress = Math.min(scrollY / (document.body.scrollHeight - vh), 1);
-    document.documentElement.style.setProperty("--scroll-progress", `${progress}`);
+    document.documentElement.style.setProperty(
+      "--scroll-progress",
+      `${progress}`,
+    );
   }, []);
 
   useEffect(() => {
@@ -57,14 +60,18 @@ export default function AnimationEngine() {
     handleScroll();
 
     // 3D tilt on cards
-    const tiltCards = document.querySelectorAll<HTMLElement>(".property-wrap, .pillar");
+    const tiltCards = document.querySelectorAll<HTMLElement>(
+      ".property-wrap, .pillar",
+    );
     tiltCards.forEach((card) => {
       card.addEventListener("mousemove", handleCardMouseMove as EventListener);
       card.addEventListener("mouseleave", handleCardLeave as EventListener);
     });
 
     // Magnetic buttons
-    const magnets = document.querySelectorAll<HTMLElement>(".circle-button, .video-trigger, .arrow-btn");
+    const magnets = document.querySelectorAll<HTMLElement>(
+      ".circle-button, .video-trigger, .arrow-btn",
+    );
     magnets.forEach((btn) => {
       btn.addEventListener("mousemove", handleMagnet as EventListener);
       btn.addEventListener("mouseleave", handleMagnetLeave as EventListener);
@@ -84,7 +91,7 @@ export default function AnimationEngine() {
             .filter(Boolean)
             .map(
               (word, i) =>
-                `<span class="word" style="animation-delay:${1.4 + i * 0.12}s">${word}</span>`
+                `<span class="word" style="animation-delay:${1.4 + i * 0.12}s">${word}</span>`,
             )
             .join(" ");
         })
@@ -94,15 +101,30 @@ export default function AnimationEngine() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       tiltCards.forEach((card) => {
-        card.removeEventListener("mousemove", handleCardMouseMove as EventListener);
-        card.removeEventListener("mouseleave", handleCardLeave as EventListener);
+        card.removeEventListener(
+          "mousemove",
+          handleCardMouseMove as EventListener,
+        );
+        card.removeEventListener(
+          "mouseleave",
+          handleCardLeave as EventListener,
+        );
       });
       magnets.forEach((btn) => {
         btn.removeEventListener("mousemove", handleMagnet as EventListener);
-        btn.removeEventListener("mouseleave", handleMagnetLeave as EventListener);
+        btn.removeEventListener(
+          "mouseleave",
+          handleMagnetLeave as EventListener,
+        );
       });
     };
-  }, [handleScroll, handleCardMouseMove, handleCardLeave, handleMagnet, handleMagnetLeave]);
+  }, [
+    handleScroll,
+    handleCardMouseMove,
+    handleCardLeave,
+    handleMagnet,
+    handleMagnetLeave,
+  ]);
 
   return null;
 }

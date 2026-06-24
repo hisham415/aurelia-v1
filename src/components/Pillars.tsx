@@ -29,6 +29,7 @@ const pillars = [
 export default function Pillars() {
   const [current, setCurrent] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const updateTransform = useCallback(() => {
     if (!trackRef.current) return;
@@ -45,10 +46,33 @@ export default function Pillars() {
     return () => window.removeEventListener("resize", updateTransform);
   }, [updateTransform]);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            observer.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.15 }
+    );
+    section.querySelectorAll(".pillars-reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="pillars" aria-labelledby="pillars-title">
+    <section className="pillars" aria-labelledby="pillars-title" ref={sectionRef}>
+      {/* Ambient decorations */}
+      <div className="pillars-glow" aria-hidden="true" />
+      <div className="pillars-float pillars-float--1" aria-hidden="true" />
+      <div className="pillars-float pillars-float--2" aria-hidden="true" />
+      <div className="pillars-float pillars-float--3" aria-hidden="true" />
+
       <div className="container">
-        <div className="pillars-head">
+        <div className="pillars-head pillars-reveal">
           <div>
             <p className="eyebrow">02 / What endures</p>
             <h2 className="display" id="pillars-title">
@@ -93,7 +117,7 @@ export default function Pillars() {
             </button>
           </div>
         </div>
-        <div className="pillars-viewport">
+        <div className="pillars-viewport pillars-reveal pillars-reveal--cards">
           <div className="pillars-track" ref={trackRef}>
             {pillars.map((p) => (
               <article
@@ -107,6 +131,18 @@ export default function Pillars() {
               </article>
             ))}
           </div>
+        </div>
+
+        {/* Progress dots */}
+        <div className="pillars-dots">
+          {pillars.map((_, i) => (
+            <button
+              key={i}
+              className={`pillars-dot${current === i ? " active" : ""}`}
+              onClick={() => setCurrent(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

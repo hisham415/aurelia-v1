@@ -44,9 +44,11 @@ export default function Journal() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
-    grid.querySelectorAll(".journal-card").forEach((el) => observer.observe(el));
+    grid
+      .querySelectorAll(".journal-card")
+      .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 

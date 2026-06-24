@@ -18,10 +18,12 @@ export default function Development() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    section.querySelectorAll(".anim-item").forEach((el) => observer.observe(el));
+    section
+      .querySelectorAll(".anim-item")
+      .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
