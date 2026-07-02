@@ -1,6 +1,21 @@
 export default function Hero() {
   return (
     <section className="hero" aria-label="Aurelia signature residence">
+      {/* Background video */}
+      <video
+        className="hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=80"
+        aria-hidden="true"
+      >
+        <source src="/video/DubaiRealEstate.mp4" type="video/mp4" />
+      </video>
+      <div className="hero-overlay" aria-hidden="true" />
+
       {/* Decorative floating orbs */}
       <div className="hero-orb hero-orb--1" aria-hidden="true" />
       <div className="hero-orb hero-orb--2" aria-hidden="true" />
